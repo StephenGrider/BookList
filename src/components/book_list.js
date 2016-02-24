@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { Link } from 'react-router';
 
 class BookList extends Component {
   componentWillMount() {
@@ -10,10 +11,8 @@ class BookList extends Component {
 
   renderListItem(book) {
     return (
-      <li
-        onClick={() => { this.props.selectBook(book); }}
-        className="list-group-item">
-        {book.name}
+      <li className="list-group-item">
+        <Link to={`/users/${book.id}`}>{book.name}</Link>
       </li>
     );
   }

@@ -1,14 +1,13 @@
 // src/components/app.js
 import React from 'react';
 
-import BookList from './book_list';
-import BookDetail from './book_detail';
+import Header from './header';
 
-const App = () => {
+const App = (props) => {
   return (
     <div>
-      <BookList />
-      <BookDetail />
+      <Header />
+      {props.children}
     </div>
   );
 };

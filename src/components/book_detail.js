@@ -1,18 +1,32 @@
 // components/book_detail.js
-import React from 'react';
+import _ from 'lodash';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-const BookDetail = (props) => {
-  if (!props.book) {
-    return <div>Click a book to get started</div>;
+class BookDetail extends Component {
+  componentWillMount() {
+    this.props.fetchBook(this.props.params.id);
   }
 
-  return (
-    <div>
-      Name: {props.book.name}<br />
-      Email: {props.book.email}
-    </div>
-  );
-};
+  render() {
+    const book = _.find(this.props.books, { id: parseInt(this.props.params.id) });
 
-export default connect(({selectedBook}) => ({book: selectedBook}))(BookDetail);
+    if (!book) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <div>
+        Name: {book.name}<br />
+        Email: {book.email}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return { books: state.books };
+}
+
+export default connect(mapStateToProps, actions)(BookDetail);
