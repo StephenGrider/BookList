@@ -1,10 +1,13 @@
 // reducers/book_list.js
+// http://jsonplaceholder.typicode.com/users
 
-export default function() {
-  return [
-    { title: 'Harry Potter', pages: 100},
-    { title: 'Dark Tower', pages: 200},
-    { title: 'How to use a Remote', pages: 300},
-    { title: 'Projectors for Beginners', pages: 400}
-  ];
+import { FETCH_BOOKS } from '../actions/types';
+
+export default function(state = [], action) {
+  switch(action.type) {
+    case FETCH_BOOKS:
+      return action.payload.data;
+  }
+
+  return state;
 }

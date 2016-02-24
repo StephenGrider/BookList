@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class BookList extends Component {
+  componentWillMount() {
+    this.props.fetchBooks();
+  }
+
   renderListItem(book) {
     return (
       <li
         onClick={() => { this.props.selectBook(book); }}
         className="list-group-item">
-        {book.title}
+        {book.name}
       </li>
     );
   }

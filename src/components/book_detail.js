@@ -9,8 +9,8 @@ const BookDetail = (props) => {
 
   return (
     <div>
-      Title: {props.book.title}<br />
-      Pages: {props.book.pages}
+      Name: {props.book.name}<br />
+      Email: {props.book.email}
     </div>
   );
 };
