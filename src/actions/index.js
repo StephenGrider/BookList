@@ -4,8 +4,16 @@ import {
   FETCH_BOOKS,
   FETCH_POSTS,
   FETCH_BOOK,
-  SAVE_POST
+  SAVE_POST,
+  SELECT_POST
 } from './types';
+
+export function selectPost(post, selected) {
+  return {
+    type: SELECT_POST,
+    payload: { post, selected }
+  };
+}
 
 export function savePost(postProps) {
   const url = 'http://jsonplaceholder.typicode.com/posts'

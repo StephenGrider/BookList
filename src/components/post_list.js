@@ -8,12 +8,25 @@ class PostList extends Component {
     this.props.fetchPosts();
   }
 
+  onListItemCheck(post, event) {
+
+  }
+
+  renderListItem(post) {
+    return (
+      <li>
+        <input type="checkbox" onChange={this.onListItemCheck.bind(this, post)} />
+        {post.title}
+      </li>
+    );
+  }
+
   render() {
     return (
-      <div>
+      <div className="post-list">
         <Link to="/posts/new">Create</Link>
         <ul>
-          {this.props.posts.map(post => <li>{post.title}</li>)}
+          {this.props.posts.map(this.renderListItem.bind(this))}
         </ul>
       </div>
     );
