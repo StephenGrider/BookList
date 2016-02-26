@@ -3,24 +3,14 @@ import { reduxForm } from 'redux-form';
 import * as actions from '../actions';
 
 const FIELDS = {
-  title: {
-    type: 'input',
-    label: 'Title'
-  },
-  body: {
-    type: 'input',
-    label: 'Content'
-  },
-  phoneNumber: {
-    label: 'Phone Number'
-  },
-  state: {
-    label: 'Enter a State'
-  }
+  title: { label: 'Title' },
+  body: { label: 'Content' },
+  computer: { label: 'Monitor'}
 };
 
 const buildField = (props, field, fieldName) => {
   const fieldProps = props.fields[fieldName];
+  console.log(fieldProps)
 
   return (
     <fieldset className="form-group">

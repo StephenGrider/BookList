@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router';
+import selectedPostsSelector from '../selectors/selected_posts';
 
 class PostList extends Component {
   componentWillMount() {
@@ -9,7 +10,7 @@ class PostList extends Component {
   }
 
   onListItemCheck(post, event) {
-
+    this.props.selectPost(post, event.target.checked);
   }
 
   renderListItem(post) {
@@ -25,6 +26,11 @@ class PostList extends Component {
     return (
       <div className="post-list">
         <Link to="/posts/new">Create</Link>
+        <h3>Selection Set</h3>
+        <ul>
+          {this.props.selectedPosts.map(post => <li>{post.title}</li>)}
+        </ul>
+        <h3>All Posts</h3>
         <ul>
           {this.props.posts.map(this.renderListItem.bind(this))}
         </ul>
@@ -33,4 +39,11 @@ class PostList extends Component {
   }
 }
 
-export default connect(({posts}) => ({posts}), actions)(PostList);
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+    selectedPosts: selectedPostsSelector(state)
+  };
+};
+
+export default connect(mapStateToProps, actions)(PostList);

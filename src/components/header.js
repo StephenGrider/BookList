@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <div>
+    <div className="header">
       <h3>App Directory</h3>
       <ul>
         <li>
